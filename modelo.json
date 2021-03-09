@@ -1,0 +1,35 @@
+{
+  " variáveis " : {
+    " image " : " utahpacker " ,
+    " tag " : " 1.0 "
+  },
+
+  " construtores " : [
+   {
+      " autor " : " Lucas Correia " ,
+      " tipo " : " docker " ,
+      " image " : " debian: stretch " ,
+      " commit " : " true " ,
+      " mudanças " : [
+	  " ENTRYPOINT [ \" \ " ] " ,
+	  " CMD [ \" nginx \ " , \" -g \ " , \" daemon desligado; \ " ] " ,
+	  " EXPOR 80 "
+      ]
+  }
+ ],
+ " provisionadores " : [
+    {
+      " tipo " : " casca " ,
+      " inline " : [ " apt-get update && apt-get -y install nginx " ]
+    }
+  ],
+  " pós-processadores " : [
+    [
+      {
+        " type " : " docker-tag " ,
+        " repositório " : " {{usuário` imagem`}} " ,
+        " tag " : " {{user` tag`}} "
+      }
+    ]
+  ]
+}
