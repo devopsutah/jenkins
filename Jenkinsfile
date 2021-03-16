@@ -1,10 +1,12 @@
 pipeline {
-    agent any
-
-    stages {
+    agent {
+    docker { image 'debian:buster' }
+    }
+        stages {
         stage('Build') {
             steps {
                 echo 'Building..'
+                
             }
         }
         stage('Test') {
